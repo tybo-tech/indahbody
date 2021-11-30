@@ -1,0 +1,98 @@
+<!-- <app-banner-widget [heading]="heading"></app-banner-widget> -->
+
+<div class="section about max-width vm" *ngIf="item">
+  <button class="secondary" (click)="back()">Back</button>
+  <br>
+  <br>
+
+  <div class="form-item">
+    <label for="">Promotion Name*</label>
+    <input type="text" [(ngModel)]="item.Name">
+  </div>
+
+  <div class="form-item">
+    <label for="">Promotion Percent Off*</label>
+    <input type="number" [(ngModel)]="item.Price">
+  </div>
+
+
+
+
+
+
+  <div class="form-item">
+    <label for="">Description</label>
+
+    <textarea [(ngModel)]="item.Description" name="" id="" cols="30" rows="10"></textarea>
+  </div>
+
+
+  <div class="form-item">
+    <label for="">Promotion Status*</label>
+
+    <select name="" id="" [(ngModel)]="item.ItemStatus">
+      <option value="Active">Active</option>
+      <option value="Draft">Draft</option>
+      <option value="Deleted">Deleted</option>
+    </select>
+  </div>
+
+  <div class="form-item">
+    <label for="">Promotion Category*</label>
+
+    <select name="" id="" [(ngModel)]="item.ItemCategory">
+      <option value="Percentage">Percentage off</option>
+    </select>
+  </div>
+
+
+
+  <div class="col-date-time">
+
+    <div class="form-item">
+      <label for="">Start Date</label>
+      <input type="date" [(ngModel)]="item.StartDate">
+    </div>
+    <div class=""></div>
+
+    <div class="form-item">
+      <label for="">Start Time</label>
+      <input type="time" [(ngModel)]="item.StartTime">
+    </div>
+  </div>
+
+
+
+
+  <div class="col-date-time">
+    <div class="form-item">
+      <label for="">Finish Date</label>
+      <input type="date" [(ngModel)]="item.FinishDate">
+    </div>
+    <div class=""></div>
+    <div class="form-item">
+      <label for="">Finish Time</label>
+      <input type="time" [(ngModel)]="item.FinishTime">
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="form-item">
+    <label for="">Promotion Image</label>
+    <app-image-widget [image]="item.ImageUrl" (imageChangedEvent)="onImageChangedEvent($event)">
+    </app-image-widget>
+
+  </div>
+
+
+  <br>
+  <div class="action">
+    <button class="primary" [disabled]="!item.Name || !item.Price" (click)="save()">Save Promotion</button>
+  </div>
+</div>
+
+<app-feedback [message]="message" [routeTo]="'promotions'" *ngIf="message"></app-feedback>

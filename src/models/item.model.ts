@@ -1,0 +1,60 @@
+export interface Item {
+    Id?: string;
+    IdUi?: string;
+    Selected?: boolean;
+    ItemId: string;
+    RelatedId: string;
+    RelatedParentId: string;
+    Name: string;
+    CompanyId?: string;
+    ParentId?: string;
+    ItemType?: string;
+    Description?: string;
+    OrderingNo?: number;
+    Price?: number;
+    SalePrice?: number;
+    Quantity?: number;
+    ItemStatus?: string;
+    ItemCode?: string;
+    ImageUrl?: string;
+    ImageUrl2?: string;
+    ImageUrl3?: string;
+    ItemPin?: string;
+    ItemCategory: string;
+    ItemSubCategory?: string;
+    StartDate?: string;
+    StartTime?: string;
+    FinishDate?: string;
+    FinishTime?: string;
+    CreateDate?: string;
+    CreateUserId?: string;
+    ModifyDate?: string;
+    ModifyUserId?: string;
+    StatusId?: number;
+    Children?: Item[];
+    RelatedItem?: Item;
+    SelectedItemId?: string;
+    ShowMore?: boolean;
+}
+
+export const item: Item = {
+    ItemId: '',
+    RelatedId: '',
+    RelatedParentId: '',
+    Name: '',
+    ParentId: '',
+    ItemType: '',
+    CompanyId: '',
+    Description: '',
+    OrderingNo: 1,
+    Price: 0,
+    ItemStatus: '',
+    ItemCode: '',
+    ImageUrl: '',
+    ItemPin: '',
+    ItemCategory: '',
+    ItemSubCategory: '',
+    CreateUserId: '',
+    ModifyUserId: '',
+    StatusId: 1
+}

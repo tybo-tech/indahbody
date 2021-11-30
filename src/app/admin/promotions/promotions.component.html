@@ -1,0 +1,28 @@
+<div class="section">
+
+  <h1 class="main-heading">
+    All <span>promotions.</span>
+  </h1>
+
+  <button (click)="add()" *ngIf="user && user.UserType == 'Admin'">Add</button>
+
+  <div class="skin-types">
+    <div class="service" *ngFor="let item of items" (click)="add(item)">
+      <div class="image" *ngIf="item.ImageUrl">
+        <img [src]="item.ImageUrl" alt="">
+      </div>
+      <h4>
+        {{item.Name}}
+      </h4>
+      <h4>
+        {{item.Price}} % Off
+      </h4>
+      <br>
+      <button class="primary" type="button" ITEM_TYPES.PROMOTION (click)="add(item)">
+       Edit
+      </button>
+    </div>
+
+  </div>
+
+</div>

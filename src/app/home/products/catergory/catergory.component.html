@@ -1,0 +1,19 @@
+<div class="section" *ngIf="item">
+
+  <h1 class="main-heading">
+    {{item.Name}}
+  </h1>
+
+  <img [src]="item.Icon" alt="">
+
+  <p>
+    {{item.Description}}
+  </p>
+  <h3 class="main-heading">
+    Products for {{item.Name}} (  {{products.length}})
+  </h3>
+
+  <app-products></app-products>
+
+
+</div>

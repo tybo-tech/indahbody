@@ -1,0 +1,103 @@
+<!-- <app-banner-widget [heading]="heading"></app-banner-widget> -->
+
+<div class="section about max-width vm" *ngIf="item">
+  <button class="secondary" (click)="back()">Back</button>
+  <br>
+  <br>
+
+  <div class="form-item">
+    <label for="">Product Name*</label>
+    <input type="text" [(ngModel)]="item.Name">
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Price*</label>
+    <input type="number"  (change)="calculateSalePrice()" [(ngModel)]="item.Price">
+  </div>
+
+  
+  <div class="form-item">
+    <label for="">Product Promotion*</label>
+
+    <select name="" id="" [(ngModel)]="item.RelatedId" (change)="calculateSalePrice()">
+      <option value="">No Promotion</option>
+      <option *ngFor="let promotion of promotions" [value]="promotion.ItemId" >{{promotion.Name}}</option>
+    </select>
+
+    <p *ngIf="item.RelatedId">
+      <i style="color: red;">
+      <del>{{item.Price | currency:'R '}}</del>
+      </i>
+
+      <b style="color: rgb(71, 187, 4);">
+        {{item.SalePrice | currency:'R '}}
+      </b>
+    </p>
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Quantity*</label>
+    <input type="tel" [(ngModel)]="item.Quantity">
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Image 1</label>
+    <app-image-widget [image]="item.ImageUrl" (imageChangedEvent)="onImageChangedEvent($event)">
+    </app-image-widget>
+
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Image 2</label>
+    <app-image-widget [image]="item.ImageUrl2" (imageChangedEvent)="onImageChangedEvent2($event)">
+    </app-image-widget>
+
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Image 3</label>
+    <app-image-widget [image]="item.ImageUrl3" (imageChangedEvent)="onImageChangedEvent3($event)">
+    </app-image-widget>
+
+  </div>
+
+  <div class="form-item">
+    <label for="">Description</label>
+
+    <textarea [(ngModel)]="item.Description" name="" id="" cols="30" rows="10"></textarea>
+  </div>
+
+
+  <div class="form-item">
+    <label for="">Product Status*</label>
+
+    <select name="" id="" [(ngModel)]="item.ItemStatus">
+      <option value="Published">Published</option>
+      <option value="Draft">Draft</option>
+      <option value="Deleted">Deleted</option>
+    </select>
+  </div>
+
+  <div class="form-item">
+    <label for="">Product Category*</label>
+
+    <select name="" id="" [(ngModel)]="item.ItemCategory">
+      <option value="All skin types">All skin types</option>
+      <option value="Normal-skin & sensitive-skin">Normal-skin & sensitive-skin</option>
+      <option value="Oily-skin & Combination-skin">Oily-skin & Combination-skin</option>
+      <option value="Sensitive-skin & oily-skin">Sensitive-skin & oily-skin</option>
+      <option value="Sensitive-skin & normal-skin">Sensitive-skin & normal-skin</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+
+
+
+  <br>
+  <div class="action">
+    <button class="primary" [disabled]="!item.Name || !item.Price" (click)="save()">Save product</button>
+  </div>
+</div>
+
+<app-feedback [message]="message" [routeTo]="'products'" *ngIf="message"></app-feedback>

@@ -1,0 +1,109 @@
+<div class="main-container">
+  <div class="adim-menu" *ngIf="user && user.UserType == 'Admin'">
+    <div class="item" (click)="open('promotions')">
+      Promotions
+    </div>
+
+    <div class="item" (click)="open('customers')">
+      Customers
+    </div>
+
+    <div class="item" (click)="open('orders')">
+      Orders
+    </div>
+  </div>
+  <div class="top-banner">
+    <div class="col">
+      <span class="material-icons" style="position: relative; top: .25em;">
+        account_circle
+      </span>
+      <i *ngIf="!user" (click)="login()">My Account</i>
+      <i *ngIf="user && user.Name" (click)="profile()">{{user.Name}}</i>
+    </div>
+    <div class="col" style="display: none;">
+      <a href="https://wa.me/27829703889"> Chat on Whatsapp</a>
+    </div>
+    <div class="col" (click)="checkout()">
+      <span class="material-icons">
+        shopping_cart
+      </span>
+
+      Cart ({{order?.Products.length}})</div>
+  </div>
+  <div class="nav">
+    <div class="logo col">
+      <a routerLink="/">
+        <img src="assets/images/logo.png" alt="">
+      </a>
+    </div>
+
+    <div class="nav-items">
+      <ul>
+        <li>
+          <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <span class="material-icons">
+              home
+            </span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="about" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <span class="material-icons">
+              info
+            </span>
+            About Us
+          </a>
+        </li>
+        <li>
+          <a routerLink="products" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <span class="material-icons">
+              store
+            </span>
+            Products
+          </a>
+        </li>
+        <li>
+          <a routerLink="contact" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <span class="material-icons">
+              mail
+            </span>
+            Contact Us
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <!-- 
+    <div class="menu facebook" (click)="toggle()">
+      <a href="https://www.facebook.com/VigorTechSolutions" target="_blank" rel="noopener noreferrer">
+        <span class="material-icons">
+          facebook
+        </span></a>
+    </div> -->
+
+
+    <!-- <div class="menu" (click)="toggle()">
+      <span class="material-icons">
+        menu
+      </span>
+    </div> -->
+  </div>
+  <div id="scroller">
+    <router-outlet></router-outlet>
+    <app-disclaimer></app-disclaimer>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+
+
+<div class="promotion" *ngIf="promotion">
+  <div class="item">
+    <img [src]="promotion.ImageUrl" alt="">
+    <div class="data">
+      <button class="primary" style="margin-right: 1em;" (click)="open('/products/sale'); promotion = null">Shop sale</button>
+      <button class="secondary" (click)="promotion = null">Shop everything!</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+.products {
+  border: 1px solid rgb(148, 148, 148);
+  max-width: 50em;
+  margin: 2em auto;
+
+  h3 {
+    padding: 1em;
+  }
+
+  .product {
+    display: grid;
+    grid-template-columns: 4em 80% auto;
+    border-bottom: 1px solid rgb(148, 148, 148);
+
+    
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 4em 60% auto;
+  }
+
+    div {
+      border-right: 1px solid rgb(148, 148, 148);
+
+      .material-icons {
+        top: 1.3em;
+        cursor: pointer;
+        position: relative;
+      }
+
+      p {
+        width: 100%;
+        text-align: left;
+        padding: .5em;
+
+        span {
+          display: block;
+        }
+      }
+    }
+
+    img {
+      width: 3em;
+    }
+  }
+}
+
+.buttons{
+display: grid;
+grid-template-columns: 50% auto;
+  button{
+    display: block;
+    max-width: 12em;
+    margin: 0 auto;
+  }
+}
+
+
+h4{
+  padding: .5em;
+  .material-icons{
+    top: .3em;
+    position: relative;
+  }
+}

@@ -1,0 +1,41 @@
+<div class="section">
+
+  <h1 class="main-heading">
+    Log <span>in.</span>
+  </h1>
+ 
+
+  <div class="form">
+    <div class="form-item">
+      <label for="name">Username name *</label>
+      <input type="email" [(ngModel)]="email" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your password *</label>
+      <input type="password" [(ngModel)]="password" placeholder="">
+    </div>
+    <div class="form-item">
+
+
+      <button class="primary" [disabled]="!email || !password" type="button" (click)="login()">
+       Login
+      </button>
+
+      <button class="secondary" type="button" (click)="back()">
+        Back
+      </button>
+
+      <span *ngIf="error" class="error">
+
+        {{error}}
+      </span>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<app-feedback [message]="message" [routeTo]="'products'" *ngIf="message"></app-feedback>

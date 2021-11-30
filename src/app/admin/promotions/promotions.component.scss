@@ -1,0 +1,147 @@
+$box-shadow: 0 1px 2px rgba(93, 93, 93, 0.048),
+0 3px 6px rgba(0, 0, 0, 0.23);
+
+.data{
+  text-align: left;
+}
+label {
+  text-align: left;
+  font-weight: 700;
+}
+
+input {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: .2em;
+}
+
+
+
+
+
+.section {
+  background: #f7ede9;
+  margin-top: 0;
+
+  .skin-types {
+    .service {
+      position: relative;
+
+      .image {
+        width: 100%;
+        height: 40em;
+        max-height: none;
+        overflow: hidden;
+
+        @media only screen and (max-width: 600px) {
+          height: auto;
+        }
+      }
+
+  
+    }
+  }
+}
+
+
+button {
+  display: block;
+  max-width: 100%;
+}
+
+.col-2 {
+  display: grid;
+  grid-template-columns: 30% auto;
+}
+
+.show-product {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+  background: rgba(78, 78, 78, 0.952);
+  display: block;
+
+
+
+  .product {
+    max-width: 80em;
+    margin: 4% auto !important;
+    background: #D6B498;
+    background: #fff;
+    display: block;
+    padding: 0;
+    position: relative;
+    overflow-y: scroll;
+    max-height: 90vh;
+
+    @media only screen and (max-width: 600px) {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      z-index: 100000;
+      margin: 0;
+      overflow-y: scroll;
+      top: 1em;
+    }
+
+    p {
+      padding: 1em 0;
+      margin: 0 auto;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 50% auto;
+
+
+      @media only screen and (max-width: 600px) {
+        grid-template-columns: 100%;
+      }
+
+      .image {
+        position: relative;
+      }
+    }
+
+
+
+
+    .back {
+      position: absolute;
+      background: #000;
+      color: #fff;
+      border-radius: 1em;
+      text-align: center;
+      font-size: .8em;
+      left: 1em;
+      top: 1em;
+      padding: .5em 1em;
+      cursor: pointer;
+    }
+
+    .data {
+      padding: 1em;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+.scrolls {
+  position: absolute;
+  top: 30%;
+  left: 1em;
+
+  span {
+    display: block;
+    cursor: pointer;
+    width: 2em;
+  }
+}

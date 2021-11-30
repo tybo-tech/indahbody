@@ -1,0 +1,58 @@
+<div class="section">
+
+  <h1 class="main-heading" >
+    My <span>profile.</span>
+  </h1>
+
+
+
+  <div class="form" *ngIf="user">
+    <div class="form-item">
+      <label for="name">First Name *</label>
+      <input type="text" [(ngModel)]="user.Name" placeholder="">
+    </div>
+    <div class="form-item">
+      <label for="name">Last Name *</label>
+      <input type="text" [(ngModel)]="user.Surname" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Email *</label>
+      <input type="email" [(ngModel)]="user.Email" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Phone *</label>
+      <input type="tel" [(ngModel)]="user.PhoneNumber" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Delivery address*</label>
+      <textarea [(ngModel)]="user.AddressLineHome" placeholder="">
+
+      </textarea>
+    </div>
+    <div class="form-item buttons">
+
+      
+      <button class="primary  mr-2" [disabled]="!user.Name || !user.Email || !user.PhoneNumber || !user.AddressLineHome" type="button" (click)="save()">
+        Save chnages
+      </button>
+
+      <button class="secondary  mr-2" type="button" (click)="back()">
+        Back
+      </button>
+
+      <a (click)="logout()" >Logout</a>
+
+
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<app-feedback [message]="message" [routeTo]="'/'" *ngIf="message"></app-feedback>

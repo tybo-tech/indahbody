@@ -1,0 +1,19 @@
+.section{
+    text-align: center;
+    width: 100%;
+}
+img {
+  width: 15em;
+
+  margin: .5em auto !important;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%
+  }
+}
+
+.section .skin-types .service .image {
+  width: 100%;
+  max-height: none;
+  overflow: hidden;
+}

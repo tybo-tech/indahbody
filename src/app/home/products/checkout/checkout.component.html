@@ -1,0 +1,191 @@
+<div class="section">
+
+  <h1 class="main-heading" *ngIf="order">
+    My <span>cart.</span>
+  </h1>
+
+  <div class="products" *ngIf="order" id="data">
+    <div class="product" *ngFor="let item of order.Products; let i = index" (click)="rem(item, i)">
+      <div class="image">
+        <img [src]="item.Icon" alt="">
+      </div>
+      <div class="details">
+        <p>
+          {{item.Name}}
+          <span>
+            {{item.Quantity}} X {{item.Price | currency: 'R '}}
+          </span>
+        </p>
+      </div>
+
+      <div class="actions">
+        <span class="material-icons">
+          delete_outline
+        </span>
+      </div>
+    </div>
+    <h3 style="padding: .4em 1em;">
+      <u>
+        Delivery costs
+      </u>
+    </h3>
+    <h4 (click)="order.Shipping = 'Free Delivery';order.ShippingFee = 0">
+      <span *ngIf="order.Shipping == 'Free Delivery'" class="material-icons">
+        radio_button_checked
+      </span>
+      <span *ngIf="order.Shipping != 'Free Delivery'" class="material-icons">
+        radio_button_unchecked
+      </span>
+      Free delivery (Durban)
+    </h4>
+    <h4 (click)="order.Shipping = 'R100 Delivery'; order.ShippingFee = 100"
+      style="border-bottom: 1px solid rgb(182, 182, 182); padding-bottom: .8em;">
+      <span *ngIf="order.Shipping != 'Free Delivery'" class="material-icons">
+        radio_button_checked
+      </span>
+      <span *ngIf="order.Shipping == 'Free Delivery'" class="material-icons">
+        radio_button_unchecked
+      </span>
+      R100 Delivery (Other cities)
+    </h4>
+    <h3>
+      Total: {{(order.Total + (order.ShippingFee || 0) ) | currency : 'R '}}
+    </h3>
+  </div>
+
+  <div class="max-width">
+
+    <a routerLink="/products">
+      <button class="secondary" type="button">
+        Continue shopping
+      </button>
+    </a>
+  </div>
+
+  <h1 class="main-heading" *ngIf="order && order.Products.length">
+    check<span>out.</span>
+  </h1>
+  <p *ngIf="order && order.Products.length">
+    Fill the form and confirm your order by clicking the "Place the order" button.
+    <br>
+    After placing an order you will receive an e-mail containing all
+    the necessary information concerning the purchase and payment details.
+  </p>
+
+
+  <div class="form" *ngIf="order && order.Products.length">
+    <div class="form-item">
+      <label for="name">First Name *</label>
+      <input type="text" [(ngModel)]="name" placeholder="">
+    </div>
+    <div class="form-item">
+      <label for="name">Last Name *</label>
+      <input type="text" [(ngModel)]="surname" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Email *</label>
+      <input type="email" [(ngModel)]="email" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Phone *</label>
+      <input type="tel" [(ngModel)]="phone" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Delivery address*</label>
+      <textarea [(ngModel)]="address" placeholder="">
+
+      </textarea>
+    </div>
+    <div class="form-item">
+      <label for="name">Notes</label>
+      <textarea [(ngModel)]="massage" placeholder="">
+
+      </textarea>
+    </div>
+    <div class="form-item buttons">
+      <button class="secondary" type="button" (click)="back()">
+        Back
+      </button>
+
+      <button class="primary" [disabled]="!name || !email || !phone || !address" type="button" (click)="sendEmail()">
+        Place the order
+      </button>
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <span *ngIf="!order || !order.Products.length" class="error">
+    Please add some products to cart! <a routerLink="/products"> <b><i> Go to products</i></b></a>
+  </span>
+
+</div>
+
+
+<div class="modal" *ngIf="sent">
+  <div class="body">
+    <p>
+      Thank you for shopping with us. <br>
+      <b>
+        You will receive an e-mail containing all
+        the necessary information concerning the purchase and payment details.
+        Your order number is #{{randNumber}}
+      </b>
+    </p>
+
+
+    <h3>
+      How would you like to pay?
+    </h3>
+
+
+
+
+    <div class="payfast-form">
+      <form ngNoForm action="https://www.payfast.co.za/eng/process" method="POST">
+        <span *ngIf="name">
+          <input type="hidden" name="merchant_id" [value]="merchantId">
+          <input type="hidden" name="merchant_key" [value]="merchantKey">
+          <input type="hidden" name="return_url" [value]="shopingSuccesfulUrl">
+          <input type="hidden" name="cancel_url" [value]="paymentCancelledUrl">
+          <input type="hidden" name="notify_url" [value]="paymentCallbackUrl">
+
+          <input type="hidden" name="name_first" [value]="name">
+          <input type="hidden" name="name_last" [value]="surname">
+          <input type="hidden" name="email_address" [value]="email">
+          <input type="hidden" name="cell_number" [value]="phone">
+
+
+          <input type="hidden" name="amount" [value]="order.Total">
+          <input type="hidden" name="item_name" [value]="productDescription">
+          <input type="hidden" name="item_description" [value]="productDescription">
+
+
+          <input type="hidden" name="email_confirmation" value="1">
+          <input type="hidden" name="confirmation_address" value="payments@tybo.co.za">
+        </span>
+
+        <div class="actions">
+          <button type="submit" class="primary">Pay online now</button>
+          <button class="secondary" type="button" (click)="payEft()">
+            Pay using EFT
+          </button>
+
+          <p>
+            <b>
+              Please check your email for payment details.
+            </b>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

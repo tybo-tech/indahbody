@@ -1,0 +1,68 @@
+<div class="home">
+
+  <div class="banner">
+    <img src="assets/images/banner1.png" *ngIf="slide==1" class="pc" alt="">
+    <img src="assets/images/bannerpc-2.png" *ngIf="slide==2" class="pc" alt="">
+    <img src="assets/images/bannerpc-3.png" *ngIf="slide==3" class="pc" alt="">
+
+    <img src="assets/images/banner3.png" *ngIf="slide==1"  class="phone" alt="">
+    <img src="assets/images/bannerphone-2.png" *ngIf="slide==2"  class="phone" alt="">
+    <img src="assets/images/bannerphone-3.png" *ngIf="slide==3"  class="phone" alt="">
+    <div class="scrolls">
+      <span class="material-icons" (click)="changeSlide(-1)">
+        arrow_back_ios
+        </span>
+        <span class="material-icons" (click)="changeSlide(1)">
+          arrow_forward_ios
+          </span>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <h1 class="main-heading">
+      Identify <span>your skin.</span>
+    </h1>
+
+    <div class="skin-types">
+      <div class="service" *ngFor="let item of skinTypes" (click)="goto('category/'+item.Id)">
+       <div class="image">
+        <img [src]="item.Icon" alt="">
+       </div>
+       <div class="">
+        <h4>
+          {{item.Name}}
+        </h4>
+
+        <p>
+          {{item.Description}}
+        </p>
+        <a  (click)="goto('category/'+item.Id)">Read more</a>
+       </div>
+      
+      </div>
+
+    </div>
+    <div class="skin-types last-100" *ngIf="lastSkinType">
+      <div class="service"  (click)="goto('category/'+lastSkinType.Id)">
+       <div class="image">
+        <img [src]="lastSkinType.Icon" alt="">
+       </div>
+       <div class="data">
+        <h4>
+          {{lastSkinType.Name}}
+        </h4>
+
+        <p>
+          {{lastSkinType.Description}}
+        </p>
+        <a  (click)="goto('category/'+lastSkinType.Id)">Read more</a>
+       </div>
+      
+      </div>
+
+    </div>
+
+  </div>
+<app-products></app-products>
+</div>
